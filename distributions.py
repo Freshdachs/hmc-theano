@@ -26,6 +26,3 @@ def multivar(cov):
 
 def coin(wght=0.5):
     return srng.binomial(p=wght)
-
-x = T.dvector('x')
-f = theano.function([x],mnorm(np.eye(2))(x))

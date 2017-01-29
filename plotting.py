@@ -55,7 +55,7 @@ def hist2d(pnts):
     plt.show()
     
 def trace3d_ly(pts,f,title='Egg Box Sampling',rng=None):
-    X,Y,Z=pts[:,0],pts[:,1],np.array([f(*pt) for pt in pts])
+    X,Y,Z=pts[:,0],pts[:,1],np.array([f(pt) for pt in pts])
     trace = go.Scatter3d(x=X, y=Y, z=Z,
         marker=dict(size=4,color=Z,colorscale='Viridis',),
             line=dict(color='#1f77b4',width=1))

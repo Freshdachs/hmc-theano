@@ -8,7 +8,7 @@ srng = RandomStreams(seed=234)
 
 norm = lambda loc,scale: lambda x: np.exp(-((x-loc)/scale)**2/2)/np.sqrt(2*np.pi)/scale
 
-unif = lambda lower,upper: lambda x: 1/(upper-lower) * T.ge(x,lower).all()* T.le(x, upper).all()
+unif = lambda lower,upper: lambda x: 1/(upper-lower).prod() * T.ge(x,lower).all()* T.le(x, upper).all()
 
 
 def mnorm(sig,mu=0):

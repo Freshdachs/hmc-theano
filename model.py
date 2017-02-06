@@ -29,15 +29,17 @@ def l_egg(x,y):
     return np.exp((2+np.cos(x/2)*np.cos(y/2))**5)
 
 #uniform prior 0..10*pi for x and y
-frm_egg = [0,0]
-to_egg = [10*np.pi, 10*np.pi]
+frm_egg = np.array([0,0])
+to_egg = np.array([10*np.pi, 10*np.pi])
 
-def prior_egg(*pt):
-    return 1*(all(np.greater(pt,frm_egg)) and all(np.less(pt, np.array(to_egg))))
+def prior_egg(pt):
+    return dists.unif(frm_egg,to_egg)(pt)
+
+
 
 def l_p_egg(theta):
-    x,y = theta
-    return prior_egg(x,y)*l_egg(x,y)
+    x,y = theta[0], theta[1]
+    return prior_egg(theta)*l_egg(x,y)
 
 
 # 2 Variables
@@ -50,5 +52,5 @@ def p_y_x(y, x):
 
 
 def p_xy(theta):
-    y,x = theta
+    y,x = theta[0],theta[1]
     return p_y_x(y, x) * p_x(x)
